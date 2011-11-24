@@ -1,0 +1,5 @@
+@import url("common.css");
+
+.desktop body::after{
+    content: "desktop";
+}

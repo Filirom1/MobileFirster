@@ -1,0 +1,5 @@
+@import url("common.css");
+
+.phone body::after{
+    content: "phone";
+}

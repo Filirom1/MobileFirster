@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <script src="modernizr-2.0.6.js"></script>
+    <script src="matchMedia.js"></script>
+    <script src="MobileFirster.js"></script>
+
+    <link rel="stylesheet" id="mainCSS" href="css/phone.css">
+    <script type="text/javascript">
+      (function(){
+        // Update Modernizr test when media-queries change
+        var smartphoneMq = 'only screen and (max-width: 640px)';
+        var tabletMq =     'only screen and (min-width: 641px) and (max-width: 1023px)';
+        var desktopMq =    'only screen and (min-width: 1024px)';
+
+        var tests = [
+          { phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          { smartphone:    function(){ return  Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          { tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
+          { netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
+          { desktop:       function(){ return  Modernizr.mq(desktopMq); } },
+          { l:             function(){ return  Modernizr.phone || Modernizr.smartphone; } },
+          { m:             function(){ return  Modernizr.netbook; } },
+          { h:             function(){ return  Modernizr.tablet || Modernizr.desktop; } }
+        ];
+
+        MobileFirster.setCustomTests(tests)
+                   .updateWithMediaQuery([smartphoneMq, tabletMq, desktopMq])
+                   .addListener(updateCSS)
+                   .addListener(updateImage);
+
+        /* Only load the CSS corresponding to a Modernizr test */
+        var css = [ 'phone', 'smartphone', 'tablet', 'netbook', 'desktop' ];
+
+        function updateCSS(){
+          var cssFolder="css/";
+          var cssFile="phone"
+          for (var i in css){
+            var name = css[i];
+            if (Modernizr[name]) cssFile = name ;
+          }
+          document.getElementById("mainCSS").href = cssFolder + cssFile + '.css';
+        };
+
+        /* Load the image corresponding to the Modernizr test */
+        var image = ['l', 'm', 'h'];
+
+        function updateImage(){
+          var imgDir = '';
+          for (var i in image){
+            var name = image[i];
+            if (Modernizr[name]) imgDir = name ;
+          }
+          for (var i=0; i<document.images.length; i++){
+            var img = document.images[i];
+            var src = 'img/' + imgDir + '/' + img.getAttribute('data-src');
+            img.setAttribute("src", src);
+          }
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <p>
+    </p>
+    <img src="" data-src="burger.jpg" data-licence="http://www.flickr.com/photos/lilcrabbygal/484635049/" alt="burger" title="burger"/>
+  </body>
+</html>

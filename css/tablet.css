@@ -1,0 +1,6 @@
+@import url("common.css");
+
+.tablet body::after{
+    content: "tablet";
+}
+
