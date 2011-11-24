@@ -13,14 +13,14 @@
         var desktopMq =    'only screen and (min-width: 1024px)';
 
         var tests = [
-          { phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
-          { smartphone:    function(){ return  Modernizr.touch && Modernizr.mq(smartphoneMq); } },
-          { tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
-          { netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
-          { desktop:       function(){ return  Modernizr.mq(desktopMq); } },
-          { l:             function(){ return  Modernizr.phone || Modernizr.smartphone; } },
-          { m:             function(){ return  Modernizr.netbook; } },
-          { h:             function(){ return  Modernizr.tablet || Modernizr.desktop; } }
+          {phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          {smartphone:    function(){ return  Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          {tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
+          {netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
+          {desktop:       function(){ return  Modernizr.mq(desktopMq); } },
+          {l:             function(){ return  Modernizr.phone || Modernizr.smartphone; } },
+          {m:             function(){ return  Modernizr.netbook; } },
+          {h:             function(){ return  Modernizr.tablet || Modernizr.desktop; } }
         ];
 
         MobileFirster.setCustomTests(tests)
