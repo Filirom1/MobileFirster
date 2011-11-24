@@ -1,6 +1,6 @@
 @import url("common.css");
 
-.tablet body::after{
+.smartphone body::after{
     content: "smartphone";
 }
 
