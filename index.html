@@ -23,7 +23,6 @@
     <!--[if IEMobile]>   <script type="text/javascript">Modernizr.addTest('iem', true)  </script><![endif]-->
     <!--[if IEMobile 7]> <script type="text/javascript">Modernizr.addTest('ie7m', true) </script><![endif]-->
     <!--[if IEMobile 9]> <script type="text/javascript">Modernizr.addTest('ie9m', true) </script><![endif]-->
-    <script type="text/javascript">Modernizr.mq('(min-width:0)') || document.write('<script src="respond.min.js"><\/script>')</script>
 
     <link rel="stylesheet" id="mainCSS" href="css/phone.css">
     <script type="text/javascript">
@@ -34,14 +33,14 @@
         var desktopMq =    'only screen and (min-width: 1024px)';
 
         var tests = [
-          {phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
-          {smartphone:    function(){ return (Modernizr.touch && Modernizr.mq(smartphoneMq)) || Modernizr.iem; } },
-          {tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
-          {netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
-          {desktop:       function(){ return  Modernizr.mq(desktopMq) || (Modernizr.oldie && !Modernizr.iem); } },
-          {l:             function(){ return  Modernizr.phone || Modernizr.smartphone; } },
-          {m:             function(){ return  Modernizr.netbook; } },
-          {h:             function(){ return  Modernizr.tablet || Modernizr.desktop; } }
+          {phone:         function(){ return (!Modernizr.touch && Modernizr.mq(smartphoneMq)) || Modernizr.iem; } },
+          {smartphone:    function(){ return   Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          {tablet:        function(){ return   Modernizr.touch && Modernizr.mq(tabletMq); } },
+          {netbook:       function(){ return  !Modernizr.touch && Modernizr.mq(tabletMq); } },
+          {desktop:       function(){ return   Modernizr.mq(desktopMq) || (Modernizr.oldie && !Modernizr.iem); } },
+          {l:             function(){ return   Modernizr.phone || Modernizr.smartphone; } },
+          {m:             function(){ return   Modernizr.netbook; } },
+          {h:             function(){ return   Modernizr.tablet || Modernizr.desktop; } }
         ];
 
         MobileFirster.setCustomTests(tests)
@@ -79,6 +78,11 @@
         }
       })()
     </script>
+    <style>
+      .touch body {
+        background: red;
+      }
+    </style>
   </head>
   <body>
     <p>
