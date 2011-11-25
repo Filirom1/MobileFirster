@@ -20,35 +20,23 @@ mql = (function(doc, undefined) {
           style = doc.createElement('style');
           style.id = 'mq-style';
           style.textContent = '.mq { -webkit-transition: width 0.001ms; -moz-transition: width 0.001ms; -o-transition: width 0.001ms; -ms-transition: width 0.001ms; width: 0; position: absolute; top: -100em; }\n';
-          docElem.insertBefore(style, refNode);          
+          docElem.insertBefore(style, refNode);
         }
 
     return function(q, cb) {
 
         var id = 'mql-' + idCounter++,
-            callback = function() {
-                // perform test and send results to callback
-                cb({
-                    matches: (div.offsetWidth == 42),
-                    media: q
-                });
-            },
             div = doc.createElement('div');
 
         div.className = 'mq'; // mq class in CSS declares width: 0 and transition on width of duration 0.001ms
         div.id = id;
         style.textContent += '@media ' + q + ' { #' + div.id + ' { width: 42px; } }\n';        
 
-        // add transition event listeners
-        div.addEventListener('webkitTransitionEnd', callback, false); 
-        div.addEventListener('transitionend', callback, false);       //Firefox
-        div.addEventListener('oTransitionEnd', callback, false);      //Opera
-        div.addEventListener('msTransitionEnd', callback, false);      //IE        
+        if (window.matchMedia && window.matchMedia('(min-width: 0)').addListener) window.matchMedia(q).addListener(cb);
 
         docElem.insertBefore(div, refNode);
 
         // original polyfill removes element, we need to keep element for transitions to continue and events to fire.
-        
         return {
             matches: div.offsetWidth == 42,
             media: q
@@ -56,3 +44,5 @@ mql = (function(doc, undefined) {
     };
 
 })(document);
+
+
