@@ -35,7 +35,7 @@
 
         var tests = [
           {phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
-          {smartphone:    function(){ return (Modernizr.touch && Modernizr.mq(smartphoneMq)) || Modernizr.ie9m; } },
+          {smartphone:    function(){ return (Modernizr.touch && Modernizr.mq(smartphoneMq)) || Modernizr.iem; } },
           {tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
           {netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
           {desktop:       function(){ return  Modernizr.mq(desktopMq) || (Modernizr.oldie && !Modernizr.iem); } },
