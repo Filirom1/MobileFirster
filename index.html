@@ -2,20 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-
     <title>Mobile Firster</title>
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <!-- Mobile viewport optimization http://goo.gl/z0PA8 -->
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="modernizr-2.0.6.js"></script>
-    <script src="matchMedia.js"></script>
-    <script src="MobileFirster.js"></script>
-    <script>Modernizr.mq('(min-width:0)') || document.write('<script src="respond.min.js"><\/script>')</script>
+    <script type="text/javascript" src="modernizr-2.0.6.js"></script>
+    <script type="text/javascript" src="matchMedia.js"></script>
+    <script type="text/javascript" src="MobileFirster.js"></script>
+    <!--[if IE]>         <script type="text/javascript">Modernizr.addTest('ie', true)   </script><![endif]-->
+    <!--[if IE 6]>       <script type="text/javascript">Modernizr.addTest('ie6', true)  </script><![endif]-->
+    <!--[if IE 7]>       <script type="text/javascript">Modernizr.addTest('ie7', true)  </script><![endif]-->
+    <!--[if IE 8]>       <script type="text/javascript">Modernizr.addTest('ie8', true)  </script><![endif]-->
+    <!--[if lt IE 9]>    <script type="text/javascript">Modernizr.addTest('oldie', true)</script><![endif]-->
+    <!--[if IE 9]>       <script type="text/javascript">Modernizr.addTest('ie9', true)  </script><![endif]-->
+    <!--[if IEMobile]>   <script type="text/javascript">Modernizr.addTest('iem', true)  </script><![endif]-->
+    <!--[if IEMobile 7]> <script type="text/javascript">Modernizr.addTest('ie7m', true) </script><![endif]-->
+    <!--[if IEMobile 9]> <script type="text/javascript">Modernizr.addTest('ie9m', true) </script><![endif]-->
+    <script type="text/javascript">Modernizr.mq('(min-width:0)') || document.write('<script src="respond.min.js"><\/script>')</script>
 
     <link rel="stylesheet" id="mainCSS" href="css/phone.css">
     <script type="text/javascript">
@@ -27,10 +35,10 @@
 
         var tests = [
           {phone:         function(){ return !Modernizr.touch && Modernizr.mq(smartphoneMq); } },
-          {smartphone:    function(){ return  Modernizr.touch && Modernizr.mq(smartphoneMq); } },
+          {smartphone:    function(){ return (Modernizr.touch && Modernizr.mq(smartphoneMq)) || Modernizr.ie9m; } },
           {tablet:        function(){ return  Modernizr.touch && Modernizr.mq(tabletMq); } },
           {netbook:       function(){ return !Modernizr.touch && Modernizr.mq(tabletMq); } },
-          {desktop:       function(){ return  Modernizr.mq(desktopMq); } },
+          {desktop:       function(){ return  Modernizr.mq(desktopMq) || (Modernizr.oldie && !Modernizr.iem); } },
           {l:             function(){ return  Modernizr.phone || Modernizr.smartphone; } },
           {m:             function(){ return  Modernizr.netbook; } },
           {h:             function(){ return  Modernizr.tablet || Modernizr.desktop; } }
